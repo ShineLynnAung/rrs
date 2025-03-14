@@ -18,8 +18,8 @@ return new class extends Migration
             $table->date('expire_date');
             $table->string('title');
             $table->text('attach');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }
