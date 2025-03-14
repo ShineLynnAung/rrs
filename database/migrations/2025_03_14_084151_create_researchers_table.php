@@ -26,8 +26,7 @@ return new class extends Migration
             $table->string('designation');
             $table->foreignId('organization_id')->constrained()->onDelete('cascade');
             $table->text('department');
-            $table->foreignId('researcher_type_id')->constrained()->onDelete('cascade');
-            $table->date('registration_date');
+            $table->foreignId('researcher_type_id')->constrained('researcher__types')->onDelete('cascade');            $table->date('registration_date');
             $table->date('expire_date');
             $table->text('member_no');
             $table->string('registration_fees');

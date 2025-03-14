@@ -6,17 +6,20 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CopyTypeSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('copy__types')->insert([
-            ['name'=>'No Copy'],
-            ['name'=>'Hard Copy'],
-            ['name'=>'Soft Copy']
+        DB::table('users')->insert([
+            ['name'=>'Admin',
+            'email'=>'admin@gmail.com',
+            'password'=> bcrypt('123'),
+            'role_id'=>1
+
+            ]
         ]);
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('group_id')->constrained()->onDelete('cascade');
             $table->string('archives_group');
             $table->string('accessing_no');
-            $table->foreignId('copy_type_id')->constrained()->onDelete('cascade');
+            $table->foreignId('copy_type_id')->constrained('copy__types')->onDelete('cascade');
             $table->string('no_of_pages');
             $table->string('fees');
             $table->timestamps();
