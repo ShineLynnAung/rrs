@@ -4,9 +4,9 @@ namespace App\Models;
 use App\Models\Visit;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class CopyType extends Model
 {
-    protected $fillable = ['group_code', 'name'];
+    protected $fillable = ['name'];
 
     public function visits()
     {

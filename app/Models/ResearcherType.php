@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Models;
-use APP\Models\Researcher;
+use App\Models\Researcher;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class ResearcherType extends Model
 {
     protected $fillable = ['name'];
 

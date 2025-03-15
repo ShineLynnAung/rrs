@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('researcher_id')->constrained()->onDelete('cascade');
+            $table->foreignId('researcher_id')->constrained();
             $table->date('visit_date');
-            $table->foreignId('group_id')->constrained()->onDelete('cascade');
-            $table->string('archives_group');
-            $table->string('accessing_no');
-            $table->foreignId('copy_type_id')->constrained('copy__types')->onDelete('cascade');
-            $table->string('no_of_pages');
+            $table->foreignId('group_id')->constrained();
+            $table->string('archives_group')->nullable();
+            $table->string('accession_no')->nullable();
+            $table->foreignId('copy_type')->constrained('copy_types');
+            $table->integer('no_of_pages')->default(0);
             $table->string('fees');
             $table->timestamps();
         });

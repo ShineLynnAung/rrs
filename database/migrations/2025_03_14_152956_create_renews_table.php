@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('renews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('researcher_id')->constrained()->onDelete('cascade');
+            $table->foreignId('researcher_id')->constrained();
             $table->date('renew_date');
             $table->date('expire_date');
-            $table->string('title');
-            $table->text('attach');
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
+            $table->string('title')->nullable();
+            $table->string('attach')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }

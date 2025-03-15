@@ -12,7 +12,7 @@ class ResearcherTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('researcher__types')->insert([
+        DB::table('researcher_types')->insert([
             ['name'=>'Student'],
             ['name'=>'Government'],
             ['name'=>'Private'],

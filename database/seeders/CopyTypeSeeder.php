@@ -13,7 +13,7 @@ class CopyTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('copy__types')->insert([
+        DB::table('copy_types')->insert([
             ['name'=>'No Copy'],
             ['name'=>'Hard Copy'],
             ['name'=>'Soft Copy']
