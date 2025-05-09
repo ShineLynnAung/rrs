@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Researcher extends Model
 {
-    protected $fillable = [
-        'name', 'photo', 'nrc_or_passport_no', 'nrc_or_passport_attach',
+protected $fillable = [
+        'name', 'photo','nrc_front','nrc_back', 'nrc_or_passport_no',
         'country_id', 'dob', 'gender', 'current_address', 'permanent_address',
         'designation', 'organization_id', 'department', 'researcher_type_id',
         'registration_date', 'expire_date', 'member_no', 'registration_fees',

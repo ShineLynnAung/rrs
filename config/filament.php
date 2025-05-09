@@ -31,6 +31,11 @@ return [
 
     ],
 
+    'middleware' => [
+    'auth',
+    'can:viewFilament',
+],
+
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk

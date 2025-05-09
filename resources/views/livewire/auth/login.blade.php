@@ -40,8 +40,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-    }
+        $redirectUrl = url('/admin');
+
+        $this->redirectIntended(default: $redirectUrl, navigate: true);    }
 
     /**
      * Ensure the authentication request is not rate limited.

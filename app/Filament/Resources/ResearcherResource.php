@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ResearcherResource\Pages;
 use App\Filament\Resources\ResearcherResource\RelationManagers;
 use App\Models\Researcher;
+use Filament\Tables\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -25,7 +26,7 @@ class ResearcherResource extends Resource
 {
     protected static ?string $model = Researcher::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-user-circle';
 
     public static function form(Form $form): Form
     {
@@ -39,8 +40,11 @@ class ResearcherResource extends Resource
 
             FileUpload::make('photo')
                 ->label('Researcher Photo')
+                ->disk('public')
                 ->directory('researchers')
                 ->visibility('public')
+                ->image() 
+                ->downloadable()
                 ->required(),
 
             TextInput::make('nrc_or_passport_no')
@@ -49,10 +53,16 @@ class ResearcherResource extends Resource
                 ->maxLength(255),
 
             FileUpload::make('nrc_front')
-                ->label('NRC Front Image'),
+                ->label('NRC Front Image')
+                ->directory('Nrc')
+                ->disk('public')
+                ->visibility('public'),
                 
                 FileUpload::make('nrc_back')
-                ->label('NRC Front Image'),
+                ->label('NRC Front Image')
+                ->directory('Nrc')
+                ->disk('public')
+                ->visibility('public'),
 
             Select::make('country_id')
                 ->label('Country')
@@ -94,9 +104,18 @@ class ResearcherResource extends Resource
                 ->required()
                 ->maxLength(255),
 
-                TextInput::make('organization_id')
+                Select::make('organization_id')
                 ->label('Organization')
-                ->required(),
+                ->relationship('organization', 'name')
+                ->searchable()
+                ->preload()
+                ->required()
+                ->createOptionForm([
+                    TextInput::make('name')
+                        ->label('Organization Name')
+                        ->required()
+                        ->maxLength(255),
+                ]),
 
             TextInput::make('department')
                 ->label('Department')
@@ -129,13 +148,18 @@ class ResearcherResource extends Resource
             FileUpload::make('attach')
                 ->label('Researcher Attachment')
                 ->directory('researchers/attachments'),
-        ]);
+                ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
         ->columns([
+
+            Tables\Columns\TextColumn::make('index')
+                ->label('No.')
+                ->rowIndex(),
+                
             Tables\Columns\TextColumn::make('name')
                 ->label('Researcher Name')
                 ->searchable()
@@ -188,7 +212,12 @@ class ResearcherResource extends Resource
             // Define filters here if needed
         ])
         ->actions([
-            Tables\Actions\EditAction::make(),
+            Action::make('view_pdf')
+                ->label('View Attachment')
+                ->url(fn ($record) => asset('storage/' . $record->attach))
+                ->openUrlInNewTab()
+                ->icon('heroicon-o-document-text'),
+                Tables\Actions\EditAction::make(),
             Tables\Actions\ViewAction::make(),
         ])
         ->bulkActions([
