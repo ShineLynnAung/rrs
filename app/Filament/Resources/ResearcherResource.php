@@ -147,6 +147,7 @@ class ResearcherResource extends Resource
 
             FileUpload::make('attach')
                 ->label('Researcher Attachment')
+                ->required()
                 ->directory('researchers/attachments'),
                 ]);
     }

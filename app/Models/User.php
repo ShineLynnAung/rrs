@@ -13,8 +13,8 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-    use HasRoles;
+    use HasFactory, Notifiable, HasRoles;
+
 
     /**
      * The attributes that are mass assignable.
@@ -62,11 +62,10 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
-
+    public function roles()
+{
+    return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
+}
     public function assignedRole()
 {
     return $this->belongsTo(Role::class);

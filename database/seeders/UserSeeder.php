@@ -23,22 +23,16 @@ class UserSeeder extends Seeder
                 'name' => 'Admin User',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('password'),
-                'role_id' => 1,
-                'role' => 'admin',
             ],
             [
                 'name' => 'Editor User',
                 'email' => 'editor@example.com',
                 'password' => bcrypt('password'),
-                'role_id' => 2,
-                'role' => 'editor',
             ],
             [
                 'name' => 'Normal User',
                 'email' => 'user@example.com',
                 'password' => bcrypt('password'),
-                'role_id' => 3,
-                'role' => 'user',
             ],
         ];
 
@@ -48,10 +42,8 @@ class UserSeeder extends Seeder
             ], [
                 'name' => $userData['name'],
                 'password' => $userData['password'],
-                'role_id' => $userData['role_id'],
             ]);
 
-            $user->assignRole($userData['role']);
         }
 }
 }

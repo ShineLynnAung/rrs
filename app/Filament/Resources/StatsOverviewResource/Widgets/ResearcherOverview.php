@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\StatsOverviewResource\Widgets;
 
+use App\Models\ModelHasRole;
+use App\Models\Researcher;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -12,13 +14,10 @@ class ResearcherOverview extends BaseWidget
     {
         return [
            
-           Stat::make('Admin', User::role('admin')->count())
+        //    Stat::make('Admin', User::role('admin')->count())
+        Stat::make('Resarcher', Researcher::count())
                 ->icon('heroicon-o-user-circle')
                 ->color('success'),
         ];
-        
- // Stat::make('Total Researchers', \App\Models\Researcher::count())
-            //     ->icon('heroicon-o-users'),
-
     }
 }
